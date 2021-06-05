@@ -4,8 +4,8 @@
     <body>
         <div class="container">
             <h1>Simple image search engine</h1>
-            <form method="POST" enctype="multipart/form-data">
-                <input type="file" name="query_img"><br>
+            <form method="POST" enctype="multipart/form-data" id="file-input-form">
+                <input type="file" name="query_img" id="file-input"><br>
                 <input type="submit">
             </form>
             <h2>Query:</h2>
@@ -20,7 +20,15 @@
             </figure>
             {% endfor %}
         </div>
-{#    <script#}
+    <script>
+        const form = document.getElementById("file-input-form")
+        const fileInput = document.getElementById("file-input")
+
+        window.addEventListener("paste", e => {
+            fileInput.files = e.clipboardData.files;
+            form.submit()
+        })
+    </script>
     </body>
 </html>
 
